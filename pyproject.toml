@@ -1,0 +1,22 @@
+[project]
+name = "pulse-customer-intelligence"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Aditya Rai", email = "rai.adi1505@gmail.com" }
+]
+requires-python = ">=3.10"
+dependencies = [
+    "agent-framework>=1.14.0",
+    "openai>=2.54.0",
+    "pydantic>=2.13.4",
+    "python-dotenv>=1.2.2",
+]
+
+[project.scripts]
+pulse-customer-intelligence = "pulse_customer_intelligence:main"
+
+[build-system]
+requires = ["uv_build>=0.12.4,<0.13.0"]
+build-backend = "uv_build"
