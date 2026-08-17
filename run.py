@@ -1,4 +1,4 @@
-# Pulse — demo runner. Runs the multi-agent triage team over sample feedback.
+# Pulse — demo runner. Runs the multi-agent triage team (now with RAG grounding).
 import asyncio
 from src.pulse_customer_intelligence.agents_team import build_coordinator
 from src.pulse_customer_intelligence.models import Triage
@@ -25,7 +25,8 @@ async def main():
         triage = Triage.model_validate_json(clean_json(result.text))
         print(f"\n[{triage.priority}] {triage.sentiment.value}  |  {triage.category}")
         print(f"   → {triage.owning_department}")
-        print(f"   {triage.summary}")
+        print(f"   Summary: {triage.summary}")
+        print(f"   Reply:   {triage.suggested_response}")
 
 if __name__ == "__main__":
     asyncio.run(main())

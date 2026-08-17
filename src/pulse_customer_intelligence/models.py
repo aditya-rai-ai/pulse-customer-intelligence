@@ -12,3 +12,4 @@ class Triage(BaseModel):
     owning_department: str = Field(description="Department name and contact email, from the lookup_department tool")
     priority: str = Field(description="High, Medium, or Low")
     summary: str = Field(description="One short sentence summarising the feedback")
+    suggested_response: str = Field(description="A short reply to the customer, grounded in company policy")
