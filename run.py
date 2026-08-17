@@ -1,3 +1,4 @@
+# Pulse — demo runner. Runs the triage agent over sample feedback and prints structured results.
 import asyncio
 from src.pulse_customer_intelligence.agent import build_agent
 from src.pulse_customer_intelligence.models import Triage
