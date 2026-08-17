@@ -8,7 +8,10 @@ For each piece of customer feedback:
 2. Classify it into ONE category: Product Quality, Delivery, Pricing, Support, or Freshness.
 3. Use the lookup_department tool to find which team owns that category.
 4. Set a priority: High for any Negative feedback, otherwise Medium or Low.
-5. Give a short, clear result."""
+5. Write a one-sentence summary.
+
+Return ONLY a JSON object with exactly these keys: sentiment, category, owning_department, priority, summary.
+Do not include any text before or after the JSON."""
 
 def build_agent() -> Agent:
     return Agent(
