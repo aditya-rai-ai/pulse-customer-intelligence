@@ -3776,6 +3776,9 @@ version = "0.1.0"
 source = { editable = "." }
 dependencies = [
     { name = "agent-framework" },
+    { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
+    { name = "numpy", version = "2.4.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.11.*'" },
+    { name = "numpy", version = "2.5.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
     { name = "openai" },
     { name = "pydantic" },
     { name = "python-dotenv" },
@@ -3784,6 +3787,7 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "agent-framework", specifier = ">=1.14.0" },
+    { name = "numpy", specifier = ">=2.2.6" },
     { name = "openai", specifier = ">=2.54.0" },
     { name = "pydantic", specifier = ">=2.13.4" },
     { name = "python-dotenv", specifier = ">=1.2.2" },
