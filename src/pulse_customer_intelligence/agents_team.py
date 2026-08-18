@@ -2,6 +2,7 @@ from agent_framework import Agent
 from src.pulse_customer_intelligence.config import get_chat_client
 from src.pulse_customer_intelligence.tools import lookup_department
 from src.pulse_customer_intelligence.knowledge import search_knowledge
+from src.pulse_customer_intelligence.tracing import trace_middleware
 
 
 def build_analyzer() -> Agent:
@@ -15,6 +16,7 @@ def build_analyzer() -> Agent:
             "(Product Quality, Delivery, Pricing, Support, or Freshness). "
             "Reply in the form: 'Sentiment: X | Category: Y'. Nothing else."
         ),
+        middleware=[trace_middleware],
     )
 
 
@@ -28,6 +30,7 @@ def build_router() -> Agent:
             "category and return exactly what the tool gives back. Nothing else."
         ),
         tools=lookup_department,
+        middleware=[trace_middleware],
     )
 
 
@@ -40,11 +43,12 @@ def build_summarizer() -> Agent:
             "Summarize the given customer feedback in ONE short, factual sentence. "
             "Return only the sentence."
         ),
+        middleware=[trace_middleware],
     )
 
 
 def build_advisor() -> Agent:
-    """NEW: uses the RAG knowledge base to draft a policy-grounded reply."""
+    """Uses the RAG knowledge base to draft a policy-grounded reply."""
     return Agent(
         client=get_chat_client(),
         name="advisor",
@@ -56,6 +60,7 @@ def build_advisor() -> Agent:
             "policy says. Never invent a policy. Return only the sentence."
         ),
         tools=search_knowledge,
+        middleware=[trace_middleware],
     )
 
 
@@ -87,4 +92,5 @@ def build_coordinator() -> Agent:
             summarizer.as_tool(),
             advisor.as_tool(),
         ],
+        middleware=[trace_middleware],
     )

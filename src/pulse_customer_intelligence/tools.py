@@ -1,7 +1,6 @@
 def lookup_department(category: str) -> str:
     """Return the owning department and contact email for a customer-feedback category.
     Valid categories: Product Quality, Delivery, Pricing, Support, Freshness."""
-    print(f"   [tool called → lookup_department(category='{category}')]")
     directory = {
         "product quality": "Product Management <product@company.com>",
         "delivery":        "Operations <ops@company.com>",
