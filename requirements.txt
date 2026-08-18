@@ -1,0 +1,6 @@
+streamlit
+agent-framework==1.14.0
+openai
+python-dotenv
+pydantic
+numpy
