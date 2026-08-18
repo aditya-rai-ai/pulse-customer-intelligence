@@ -2,15 +2,24 @@
 import os
 import asyncio
 import streamlit as st
+from dotenv import load_dotenv
 
 st.set_page_config(page_title="Pulse — Customer Intelligence Agent", page_icon="📊")
 
-# Bridge a hosted secret -> env var BEFORE importing Pulse (its modules read the key on import)
+# Load the OpenAI key BEFORE importing Pulse (its modules read the key at import time).
+load_dotenv()  # local: reads your .env
 try:
-    if "OPENAI_API_KEY" in st.secrets:
+    if "OPENAI_API_KEY" in st.secrets:            # hosted: read from Streamlit secrets
         os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
 except Exception:
-    pass  # locally we use the .env file instead
+    pass
+
+if not os.environ.get("OPENAI_API_KEY"):
+    st.error(
+        'No OpenAI API key found. On Streamlit Cloud, open the ⋮ menu → Settings → Secrets '
+        'and add exactly:\n\nOPENAI_API_KEY = "sk-...your key..."\n\nthen reboot the app.'
+    )
+    st.stop()
 
 import src.pulse_customer_intelligence.tracing as tracing
 tracing.ENABLED = False  # no step-tracing noise in the web app
