@@ -61,6 +61,9 @@ Every agent and tool call is traced for observability, and the whole system is s
 
     # 4. Run the evaluation harness
     uv run evals.py
+    
+    # 5. Cross-framework version (same core logic, built in LangGraph)
+    uv run langgraph_pulse.py
 
 ## What I learned building this
 
@@ -71,4 +74,4 @@ Every agent and tool call is traced for observability, and the whole system is s
 
 ## Status & roadmap
 
-Working, production-shaped prototype. Next: a cross-framework implementation (LangGraph), a larger evaluation dataset, and richer guardrails.
+Working, production-shaped prototype — implemented in **two frameworks** (Microsoft Agent Framework and LangGraph) to compare orchestration models. Next: a larger evaluation dataset, richer guardrails (AI-based content and prompt-injection checks), a real observability backend, and deployment.
